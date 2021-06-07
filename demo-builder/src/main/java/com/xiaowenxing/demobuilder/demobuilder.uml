@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.xiaowenxing.demobuilder</OriginalElement>
+  <nodes>
+    <node x="12.0" y="80.0">com.xiaowenxing.demobuilder.service.Burger</node>
+    <node x="353.0" y="235.0">com.xiaowenxing.demobuilder.employ.Director</node>
+    <node x="0.0" y="469.0">com.xiaowenxing.demobuilder.employ.Consumer</node>
+    <node x="157.0" y="469.0">com.xiaowenxing.demobuilder.domin.Item</node>
+    <node x="0.0" y="394.0">com.xiaowenxing.demobuilder.service.impl.PackingGlass</node>
+    <node x="136.0" y="0.0">com.xiaowenxing.demobuilder.service.ItemBuild</node>
+    <node x="128.0" y="80.0">com.xiaowenxing.demobuilder.service.impl.FrenchFries</node>
+    <node x="0.0" y="160.0">com.xiaowenxing.demobuilder.service.impl.BurgerVeg</node>
+    <node x="164.0" y="394.0">com.xiaowenxing.demobuilder.service.impl.PackingPaper</node>
+    <node x="102.0" y="314.0">com.xiaowenxing.demobuilder.service.Packing</node>
+    <node x="264.0" y="160.0">com.xiaowenxing.demobuilder.service.impl.DrinkPepsi</node>
+    <node x="284.0" y="80.0">com.xiaowenxing.demobuilder.service.Drink</node>
+  </nodes>
+  <notes>
+    <note x="23.5" y="235.0">
+      <node>com.xiaowenxing.demobuilder.service.Packing</node>
+      <value>作为ItemBuild中的一个返回值,也是一个接口</value>
+      <edge>
+        <point x="0.0" y="-15.0" />
+        <point x="0.0" y="14.5" />
+      </edge>
+    </note>
+  </notes>
+  <edges>
+    <edge source="com.xiaowenxing.demobuilder.service.impl.BurgerVeg" target="com.xiaowenxing.demobuilder.service.Burger">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demobuilder.service.impl.PackingPaper" target="com.xiaowenxing.demobuilder.service.Packing">
+      <point x="0.0" y="-15.0" />
+      <point x="236.0" y="369.0" />
+      <point x="180.0" y="369.0" />
+      <point x="26.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demobuilder.service.Burger" target="com.xiaowenxing.demobuilder.service.ItemBuild">
+      <point x="0.0" y="-15.0" />
+      <point x="60.0" y="55.0" />
+      <point x="156.0" y="55.0" />
+      <point x="-40.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demobuilder.service.impl.DrinkPepsi" target="com.xiaowenxing.demobuilder.service.Drink">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demobuilder.service.Drink" target="com.xiaowenxing.demobuilder.service.ItemBuild">
+      <point x="0.0" y="-15.0" />
+      <point x="328.0" y="55.0" />
+      <point x="236.0" y="55.0" />
+      <point x="40.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demobuilder.service.impl.PackingGlass" target="com.xiaowenxing.demobuilder.service.Packing">
+      <point x="0.0" y="-15.0" />
+      <point x="72.0" y="369.0" />
+      <point x="128.0" y="369.0" />
+      <point x="-26.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demobuilder.service.impl.FrenchFries" target="com.xiaowenxing.demobuilder.service.ItemBuild">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="92.0" y="249.5" />
+  <SelectedNodes>
+    <node>com.xiaowenxing.demobuilder.service.impl.FrenchFries</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
