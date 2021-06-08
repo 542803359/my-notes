@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.xiaowenxing.demodecorate.service</OriginalElement>
+  <nodes>
+    <node x="4.0" y="160.0">com.xiaowenxing.demodecorate.service.decorate.Milk</node>
+    <node x="392.0" y="80.0">com.xiaowenxing.demodecorate.service.coffee.LatteCoffee</node>
+    <node x="212.0" y="80.0">com.xiaowenxing.demodecorate.service.coffee.AmericanCoffee</node>
+    <node x="0.0" y="235.0">com.xiaowenxing.demodecorate.service.Consumer</node>
+    <node x="244.0" y="0.0">com.xiaowenxing.demodecorate.service.coffee.Coffee</node>
+    <node x="0.0" y="80.0">com.xiaowenxing.demodecorate.service.decorate.CondimentDecorator</node>
+    <node x="104.0" y="160.0">com.xiaowenxing.demodecorate.service.decorate.Mocha</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.xiaowenxing.demodecorate.service.decorate.Milk" target="com.xiaowenxing.demodecorate.service.decorate.CondimentDecorator">
+      <point x="0.0" y="-15.0" />
+      <point x="44.0" y="135.0" />
+      <point x="48.0" y="135.0" />
+      <point x="-48.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demodecorate.service.decorate.CondimentDecorator" target="com.xiaowenxing.demodecorate.service.coffee.Coffee">
+      <point x="0.0" y="-15.0" />
+      <point x="96.0" y="55.0" />
+      <point x="260.0" y="55.0" />
+      <point x="-32.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demodecorate.service.coffee.AmericanCoffee" target="com.xiaowenxing.demodecorate.service.coffee.Coffee">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demodecorate.service.coffee.LatteCoffee" target="com.xiaowenxing.demodecorate.service.coffee.Coffee">
+      <point x="0.0" y="-15.0" />
+      <point x="460.0" y="55.0" />
+      <point x="324.0" y="55.0" />
+      <point x="32.0" y="15.0" />
+    </edge>
+    <edge source="com.xiaowenxing.demodecorate.service.decorate.Mocha" target="com.xiaowenxing.demodecorate.service.decorate.CondimentDecorator">
+      <point x="0.0" y="-15.0" />
+      <point x="148.0" y="135.0" />
+      <point x="144.0" y="135.0" />
+      <point x="48.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="264.0" y="132.5" />
+  <SelectedNodes>
+    <node>com.xiaowenxing.demodecorate.service.coffee.Coffee</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
