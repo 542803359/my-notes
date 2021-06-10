@@ -1,6 +1,6 @@
-package com.xiaowenxing.demoproxy.service.impl;
+package com.xiaowenxing.demoproxy.proxy.service.impl;
 
-import com.xiaowenxing.demoproxy.service.Work;
+import com.xiaowenxing.demoproxy.proxy.service.Work;
 import org.springframework.stereotype.Service;
 
 /**

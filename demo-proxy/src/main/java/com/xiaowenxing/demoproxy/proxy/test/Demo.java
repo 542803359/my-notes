@@ -1,8 +1,8 @@
-package com.xiaowenxing.demoproxy.test;
+package com.xiaowenxing.demoproxy.proxy.test;
 
 import com.xiaowenxing.demoproxy.proxy.ProxyFactory;
-import com.xiaowenxing.demoproxy.service.Work;
-import com.xiaowenxing.demoproxy.service.impl.WorkImpl;
+import com.xiaowenxing.demoproxy.proxy.service.Work;
+import com.xiaowenxing.demoproxy.proxy.service.impl.WorkImpl;
 
 /**
  * @author XWX
