@@ -7,9 +7,9 @@
     <node x="392.0" y="80.0">com.xiaowenxing.demodecorate.service.coffee.LatteCoffee</node>
     <node x="212.0" y="80.0">com.xiaowenxing.demodecorate.service.coffee.AmericanCoffee</node>
     <node x="0.0" y="235.0">com.xiaowenxing.demodecorate.service.Consumer</node>
+    <node x="104.0" y="160.0">com.xiaowenxing.demodecorate.service.decorate.Mocha</node>
     <node x="244.0" y="0.0">com.xiaowenxing.demodecorate.service.coffee.Coffee</node>
     <node x="0.0" y="80.0">com.xiaowenxing.demodecorate.service.decorate.CondimentDecorator</node>
-    <node x="104.0" y="160.0">com.xiaowenxing.demodecorate.service.decorate.Mocha</node>
   </nodes>
   <notes />
   <edges>
