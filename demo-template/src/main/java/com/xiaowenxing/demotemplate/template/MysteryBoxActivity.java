@@ -1,6 +1,7 @@
 package com.xiaowenxing.demotemplate.template;
 
 import com.xiaowenxing.demotemplate.dto.ActivityDto;
+import org.springframework.stereotype.Service;
 
 /**
  * 盲盒活动
@@ -9,10 +10,15 @@ import com.xiaowenxing.demotemplate.dto.ActivityDto;
  * @date 2021/6/17 18:13
  * @since 3.6
  **/
+@Service("mysteryBoxActivity")
 public class MysteryBoxActivity extends ActivityTemplate {
 
+
     @Override
-    void handleData(Integer activityId, ActivityDto activityDto) {
+    public void handleData(Integer activityId, ActivityDto activityDto) {
+
         System.out.println("盲盒活动  处理数据: " + activityId);
     }
+
+
 }

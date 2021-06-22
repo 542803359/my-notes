@@ -1,7 +1,9 @@
 package com.xiaowenxing.demotemplate.template;
 
 import com.xiaowenxing.demotemplate.dto.ActivityDto;
+import com.xiaowenxing.demotemplate.service.UserService;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,6 +15,16 @@ import java.util.Date;
  * @since 3.6
  **/
 public abstract class ActivityTemplate {
+
+    /**
+     * 在抽象类中 @Autowired/ @Resource注入实例，使用的时候实例对象为空，
+     * 因为抽象类自身无法被实例化，因此无法被spring托管，
+     * 而抽象类的子类是可以被实例化托管的，当子类被托管后，抽象类中注入的实例对象能正常注入。
+     * （这里像是java多态向上，向下转型的结果）
+     */
+
+    @Resource
+    private UserService userService;
 
 
     /**
@@ -26,6 +38,9 @@ public abstract class ActivityTemplate {
             System.out.println("活动时间冲突");
             return;
         }
+
+        userService.getUserInfo();
+
         Integer activityId = createActivity(activityDto);
 
         handleData(activityId, activityDto);
