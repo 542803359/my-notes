@@ -9,6 +9,7 @@ import org.redisson.client.codec.Codec;
 import org.redisson.client.codec.IntegerCodec;
 import org.redisson.client.codec.StringCodec;
 import org.redisson.codec.JsonJacksonCodec;
+import org.redisson.codec.SerializationCodec;
 import org.redisson.codec.TypedJsonJacksonCodec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,13 +42,21 @@ class DemoStrategyApplicationTests {
         double min = 5.0;
         double max = 10.0;
 
+        Map<Recommend, Double> map = new HashMap<>();
         for (int i = 1; i < 10; i++) {
             Recommend recommend = new Recommend();
             recommend.setUserId(i);
             double boundedDouble = min + new Random().nextDouble() * (max - min);
             recommend.setWeights(boundedDouble);
-            scoredSortedSet.add(boundedDouble, recommend);
+
+            //单个存储
+            //scoredSortedSet.add(boundedDouble, recommend);
+
+            //放入map中集中存储
+            map.put(recommend, boundedDouble);
         }
+
+        scoredSortedSet.addAll(map);
 
     }
 
@@ -117,5 +126,7 @@ class DemoStrategyApplicationTests {
         Recommend recommend2 = recommend.get();
 
         System.out.println(recommend2.getUserId());
+
+
     }
 }
