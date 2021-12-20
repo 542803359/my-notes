@@ -22,5 +22,6 @@ public class Client {
     @GetMapping("/test")
     public void doSomething(){
         applicationContext.publishEvent(new UserUpdateEvent(this, "张三"));
+        System.out.println(123);
     }
 }

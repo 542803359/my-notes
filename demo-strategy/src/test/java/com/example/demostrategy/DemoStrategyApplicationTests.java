@@ -90,10 +90,8 @@ class DemoStrategyApplicationTests {
         for (int i = 1; i < 10; i++) {
 
             double boundedDouble = min + new Random().nextDouble() * (max - min);
-            int anInt = new Random().nextInt(10);
-            System.out.println(anInt);
 
-            scoredSortedSet.add(boundedDouble, anInt);
+            scoredSortedSet.add(boundedDouble, i);
         }
     }
 

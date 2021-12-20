@@ -1,6 +1,7 @@
 package com.xiaowenxing.demoobserver.springboot;
 
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,8 +14,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserEventListener {
 
+    @Async
     @EventListener
     public void updateUser(UserUpdateEvent userUpdateEvent){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("名字变更为: "+userUpdateEvent.getUserName());
     }
 }
