@@ -1,5 +1,8 @@
 package com.xiaowenxing.demoproxy.proxy.service.impl;
 
+import com.xiaowenxing.demoproxy.annotation.AccessLimit;
+import com.xiaowenxing.demoproxy.annotation.ParamHandle;
+import com.xiaowenxing.demoproxy.domin.UserVO;
 import com.xiaowenxing.demoproxy.proxy.service.Work;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +13,16 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class WorkImpl implements Work {
+
+
     @Override
-    public void doWork() {
+    @ParamHandle
+    public UserVO doWork() {
         System.out.println("do something");
+        UserVO userVO = new UserVO();
+        userVO.setUserId(123L);
+        userVO.setNickName("test");
+        userVO.setAvatar("avatarImpl");
+        return userVO;
     }
 }

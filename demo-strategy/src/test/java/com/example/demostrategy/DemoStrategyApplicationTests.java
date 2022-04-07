@@ -16,8 +16,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +38,7 @@ class DemoStrategyApplicationTests {
         String key = "simple";
 
         RScoredSortedSet<Recommend> scoredSortedSet = redissonClient.getScoredSortedSet(key, new TypedJsonJacksonCodec(Recommend.class));
-
+        scoredSortedSet.expire(180, TimeUnit.SECONDS);
 
         double min = 5.0;
         double max = 10.0;
@@ -84,7 +85,12 @@ class DemoStrategyApplicationTests {
 
         RScoredSortedSet<Integer> scoredSortedSet = redissonClient.getScoredSortedSet(key, IntegerCodec.INSTANCE);
 
-        double min = 5.0;
+
+        Collection<Integer> integers = scoredSortedSet.readAll();
+        ArrayList<Integer> list = new ArrayList<>(integers);
+        System.out.println(list);
+
+       /* double min = 5.0;
         double max = 10.0;
 
         for (int i = 1; i < 10; i++) {
@@ -92,7 +98,7 @@ class DemoStrategyApplicationTests {
             double boundedDouble = min + new Random().nextDouble() * (max - min);
 
             scoredSortedSet.add(boundedDouble, i);
-        }
+        }*/
     }
 
     @Test
@@ -100,7 +106,10 @@ class DemoStrategyApplicationTests {
         String key = "simpleInt";
         RScoredSortedSet<Integer> scoredSortedSet = redissonClient.getScoredSortedSet(key, IntegerCodec.INSTANCE);
         Set<Integer> score = scoredSortedSet.readSort("score", SortOrder.DESC, 0, 5);
+        Collection<Integer> integers = scoredSortedSet.valueRange((double) 8, true, (double) 10, true);
+        System.out.println(integers);
         System.out.println(score);
+        scoredSortedSet.remove(3);
     }
 
 
@@ -115,7 +124,7 @@ class DemoStrategyApplicationTests {
 
     @Test
     void bucketTest() {
-        RBucket<Recommend> recommend = redissonClient.getBucket("recommend",new TypedJsonJacksonCodec(Recommend.class));
+        RBucket<Recommend> recommend = redissonClient.getBucket("recommend", new TypedJsonJacksonCodec(Recommend.class));
         Recommend recommend1 = new Recommend();
         recommend1.setUserId(1);
         recommend1.setWeights(1.5);
@@ -126,5 +135,48 @@ class DemoStrategyApplicationTests {
         System.out.println(recommend2.getUserId());
 
 
+    }
+
+
+    @Test
+    void testIntMap() {
+        String key = "simpleTestInt";
+        RScoredSortedSet<Integer> scoredSortedSet = redissonClient.getScoredSortedSet(key, new TypedJsonJacksonCodec(Integer.class));
+        /*scoredSortedSet.expire(180, TimeUnit.SECONDS);
+        Map<Integer, Double> map = new HashMap<>();
+        for (int i = 1; i < 10; i++) {
+            double boundedDouble = 0;
+            if (i % 3 == 0) {
+                boundedDouble = 5;
+            } else if (i % 3 == 1) {
+                boundedDouble = 3;
+            } else {
+                boundedDouble = 2.5;
+            }
+
+            map.put(i, boundedDouble);
+        }
+
+        scoredSortedSet.addAll(map);
+*/
+        scoredSortedSet.add(9.0, 9);
+        Set<Integer> score = scoredSortedSet.readSort(key, SortOrder.DESC, 0, 5);
+        int size = scoredSortedSet.size();
+        scoredSortedSet.remove(1);
+        System.out.println(score);
+        System.out.println(size);
+
+
+
+
+
+    }
+
+    @Test
+    void testIntMapSize() {
+        String key = "simpleTestInt";
+        RScoredSortedSet<Object> scoredSortedSet = redissonClient.getScoredSortedSet(key);
+        System.out.println(scoredSortedSet.size());
+        scoredSortedSet.delete();
     }
 }
