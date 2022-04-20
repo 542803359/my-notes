@@ -1,5 +1,8 @@
 package com.xiaowenxing.demofactory.absFactory.factory;
 
+import com.xiaowenxing.demofactory.absFactory.service.AbsCapucciloCoffee;
+import com.xiaowenxing.demofactory.absFactory.service.AbsDrinkProduction;
+import com.xiaowenxing.demofactory.absFactory.service.AbsUsaCoffee;
 import com.xiaowenxing.demofactory.factoryMethod.factory.DrinkEnum;
 import com.xiaowenxing.demofactory.factoryMethod.factory.DrinkFactory;
 import com.xiaowenxing.demofactory.factoryMethod.service.CapucciloCoffee;
@@ -17,11 +20,11 @@ public class CoffeeFactory implements Factory {
 
 
     @Override
-    public DrinkProduction createDrink(DrinkEnum drinkEnum) {
+    public AbsDrinkProduction createDrink(DrinkEnum drinkEnum) {
         if (drinkEnum.equals(DrinkEnum.USACOFFEE)) {
-            return new UsaCoffee();
+            return new AbsUsaCoffee();
         } else if (drinkEnum.equals(DrinkEnum.CAPUCCILO)) {
-            return new CapucciloCoffee();
+            return new AbsCapucciloCoffee();
         }
         return null;
     }

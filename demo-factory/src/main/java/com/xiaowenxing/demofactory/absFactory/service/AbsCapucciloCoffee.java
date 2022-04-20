@@ -7,13 +7,13 @@ package com.xiaowenxing.demofactory.absFactory.service;
  * @date 2021/5/20 15:03
  * @since 3.2
  **/
-public class GreenTea extends DrinkProduction {
+public class AbsCapucciloCoffee extends AbsDrinkProduction {
 
     @Override
     public void createDrink() {
 
-        System.out.println("生产绿茶");
-        super.name = "绿茶";
+        System.out.println("生产卡布奇洛");
+        super.name = "卡布奇洛";
         super.pickingDrink();
         super.bakeDrink();
 

@@ -7,7 +7,7 @@ package com.xiaowenxing.demofactory.absFactory.service;
  * @date 2021/5/20 15:03
  * @since 3.2
  **/
-public class UsaCoffee extends DrinkProduction {
+public class AbsUsaCoffee extends AbsDrinkProduction {
 
     @Override
     public void createDrink() {
