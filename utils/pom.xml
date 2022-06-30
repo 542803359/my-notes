@@ -51,6 +51,12 @@
             <version>5.4.3</version>
         </dependency>
 
+        <!-- 集成rabbitmq消息队列 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
