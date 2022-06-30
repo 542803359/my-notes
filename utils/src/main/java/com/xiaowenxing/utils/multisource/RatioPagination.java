@@ -13,11 +13,11 @@ public class RatioPagination implements Serializable {
     private static final long serialVersionUID = 6722234949377171106L;
 
     /**
-     * 优先 limit 开始
+     * 优先 limit 开始 即从第几条开始取 eg: 8->从第八条开始取
      */
     private int priorityLimitStart;
     /**
-     * 优先limit 长度
+     * 优先limit 长度 即取的数量,eg:3->取3条 10->取10条
      */
     private int prioritySize;
     /**

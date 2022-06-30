@@ -134,12 +134,35 @@ public class MultiSourceComputingUtil {
                     throw new RuntimeException("分页参数计算错误");
 
                 case 0:
+
+                    //非优先总条数
+                    int nonPriorityTotalCount = param.getAllCount() - param.getPriorityCount();
+
                     //优先页等于非优先页 正常返回
                     priorityLimitStart = priorityPageSize * (param.getCurrent() - 1);
                     prioritySize = priorityPageSize;
 
+                    if (priorityLimitStart + prioritySize > param.getPriorityCount()) {
+                        if (priorityLimitStart > param.getPriorityCount()) {
+                            priorityLimitStart = -1;
+                            prioritySize = -1;
+                        } else {
+                            prioritySize = param.getPriorityCount() - priorityLimitStart;
+                        }
+                    }
+
                     nonPriorityLimitStart = nonPriorityPageSize * (param.getCurrent() - 1);
                     nonPrioritySize = nonPriorityPageSize;
+
+                    if (nonPriorityLimitStart + nonPrioritySize > nonPriorityTotalCount) {
+                        if (nonPriorityLimitStart > nonPriorityTotalCount) {
+                            nonPriorityLimitStart = -1;
+                            nonPrioritySize = -1;
+                        } else {
+                            nonPrioritySize = nonPriorityTotalCount - nonPriorityLimitStart;
+                        }
+                    }
+
                     return new RatioPagination(priorityLimitStart, prioritySize, nonPriorityLimitStart, nonPrioritySize);
                 case 1:
                     //优先页大于非优先页 则通过非优先页进行分页参数计算
@@ -208,16 +231,23 @@ public class MultiSourceComputingUtil {
         }
 
         public static void main(String[] args) {
-            for (int i = 1; i < 10; i++) {
+            int index = 1;
+            while (true) {
                 RatioPaginationParam param = new RatioPaginationParam();
                 param.setAllCount(one.size() + two.size());
                 param.setPriorityCount(one.size());
-                param.setRatio(100);
-                param.setCurrent(i);
+                param.setRatio(40);
+                param.setCurrent(index);
                 param.setPageSize(10);
                 RatioPagination ratioPagination = MultiSourceComputingUtil.multiSourceRatioPagination(param);
                 System.out.println(JSONObject.toJSONString(ratioPagination));
+                index++;
+                if (ratioPagination.getNonPriorityLimitStart() == -1 && ratioPagination.getPriorityLimitStart() == -1
+                        && ratioPagination.getNonPrioritySize() == -1 && ratioPagination.getPrioritySize() == -1) {
+                    return;
+                }
             }
+
         }
     }
 }
