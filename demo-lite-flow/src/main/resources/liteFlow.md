@@ -1,7 +1,7 @@
 
 **_此代码使用的是liteFlow-2.8.0版本_**<br><br>
-具体文档跳转地址:[liteFlow官方文档](https://liteflow.yomahub.com/pages/5816c5/#%E5%89%8D%E8%A8%80)
-
+具体文档跳转地址:---[liteFlow官方文档](https://liteflow.yomahub.com/pages/5816c5/#%E5%89%8D%E8%A8%80)
+<br><br>项目代码执行流程图---[流程图](https://normalxwx.oss-cn-hangzhou.aliyuncs.com/%E8%B4%AD%E7%89%A9%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 # LiteFlow不适用于哪些场景
 >LiteFlow*只做基于逻辑的流转*，而不做基于角色任务的流转;
 类似于审批流，A审批完应该是B审批，然后再流转到C角色,是不支持的
