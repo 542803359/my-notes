@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+    <!--    此处编排可看resources下流程图 @link:src/main/resources/购物流程图.png-->
+    <chain name="shoppingChain">
+        t1 = THEN(beef,pork);
+        t2 = THEN(chili, WHEN(tomato,egg));
+
+        THEN(
+        supermarket,
+        WHEN(t1,t2),
+        SWITCH(counter).to(discount,otherProcess),
+        endShopping
+        );
+    </chain>
+</flow>
+

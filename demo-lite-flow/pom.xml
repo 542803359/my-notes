@@ -3,36 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.xiaowenxing</groupId>
+        <artifactId>exercise</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.xiaowenxing</groupId>
-    <artifactId>exercise</artifactId>
+    <artifactId>demo-lite-flow</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>exercise</name>
+    <name>demo-lite-flow</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
-    <modules>
-        <module>demo</module>
-        <module>demo-strategy</module>
-        <module>demo-adapter</module>
-        <module>demo-factory</module>
-        <module>demo-builder</module>
-        <module>demo-decorate</module>
-        <module>demo-proxy</module>
-        <module>demo-observer</module>
-        <module>demo-state</module>
-        <module>demo-template</module>
-        <module>utils</module>
-        <module>demo-lite-flow</module>
-    </modules>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,6 +26,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yomahub</groupId>
+            <artifactId>liteflow-spring-boot-starter</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
