@@ -6,7 +6,7 @@ spring:
     host: tcp://116.62.7.32:1883
     clientId: xiaowx #客户端的id
     username: amdin
-    password: 19941024a
+    password: ******
     timeout: 2000
     keepAlive: 20
     topics: ServerId_01 #主题
