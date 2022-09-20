@@ -20,6 +20,12 @@ import javax.annotation.Resource;
 @Component
 public class PushCallback implements MqttCallback {
 
+    /**
+     * 因为spring的容器加载顺序的原因,
+     * 用于订阅的PushCallback类实现的MqttCallback接口包括具体方法已经注入到spring的容器中,
+     * 而@Autowired注解的入库方法是后注入容器的结果导致实现MqttCallback接口的方法时读取不到才抛出空指针
+     */
+
     private MqttPushClient client;
     private MqttConfiguration mqttConfiguration;
 

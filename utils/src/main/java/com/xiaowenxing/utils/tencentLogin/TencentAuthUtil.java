@@ -1,4 +1,4 @@
-package com.xiaowenxing.utils;
+package com.xiaowenxing.utils.tencentLogin;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
