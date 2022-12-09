@@ -1,0 +1,100 @@
+server:
+  port: 8898
+
+# MybatisPlus 配置
+mybatis-plus:
+  ## SQL 打印
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  shardingsphere:
+    datasource:
+      #此处库名要与下面分表"actual-data-nodes"中库名一致,不然执行sql会报空
+      names: sharding_data
+      sharding_data:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://rm-bp168wnjt8r0a2e20to.mysql.rds.aliyuncs.com:3306/sharding_data?useUnicode=true&characterEncoding=UTF8&useTimezone=true&serverTimezone=GMT%2B8
+        username: xiaowenxing
+        password: Xwx19941024
+    mode:
+      type: Memory
+    props:
+      sql-show: true
+
+
+    rules:
+
+      # 分表配置
+      sharding:
+        # 表名称前缀 shard_user0  shard_user1  shard_user2
+        binding-tables:
+          - shard_user
+        tables:
+          shard_user:
+            # 库名 + 表名表达式
+            actual-data-nodes: sharding_data.shard_user$->{0..1}
+            table-strategy:
+              standard:
+                # 分片列名称
+                sharding-column: id
+                # 分片算法名称 自定义,要与"sharding-algorithms"下的分片算法名称一致
+                sharding-algorithm-name: shard_user-inline
+        # 分片算法配置
+        sharding-algorithms:
+          # 分片算法名称
+          shard_user-inline:
+            type: INLINE
+            props:
+              algorithm-expression: shard_user$->{id % 2}
+
+
+      # 数据脱敏配置
+      encrypt:
+        encryptors:
+          encryptor_aes:
+            type: AES
+            props:
+              aes-key-value: 123456abc
+        tables:
+          # `shard_user` 使用分片规则配置的逻辑表名称
+          shard_user:
+            columns:
+              pwd:
+                cipher-column: pwd
+                encryptor-name: encryptor_aes
+
+
+
+
+#分库分表配置
+#rules:
+#  sharding:
+#    default-database-strategy:
+#      standard:
+#        sharding-column: id
+#        sharding-algorithm-name: database-inline
+#    binding-tables:
+#      - tab_user
+#    tables:
+#      tab_user:
+#        actual-data-nodes: ds$->{0..1}.tab_user$->{0..1}
+#        table-strategy:
+#          standard:
+#            sharding-column: age
+#            sharding-algorithm-name: tab_user-inline
+#    sharding-algorithms:
+#      database-inline:
+#        type: INLINE
+#        props:
+#          algorithm-expression: ds$->{id % 2}
+#      tab_user-inline:
+#        type: INLINE
+#        props:
+#          algorithm-expression: tab_user$->{age % 2}
+
+
+
+
+

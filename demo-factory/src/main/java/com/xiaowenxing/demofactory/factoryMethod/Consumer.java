@@ -2,6 +2,7 @@ package com.xiaowenxing.demofactory.factoryMethod;
 
 import com.xiaowenxing.demofactory.factoryMethod.factory.CoffeeFactory;
 import com.xiaowenxing.demofactory.factoryMethod.factory.DrinkEnum;
+import com.xiaowenxing.demofactory.factoryMethod.factory.DrinkFactory;
 import com.xiaowenxing.demofactory.factoryMethod.factory.TeaFactory;
 import com.xiaowenxing.demofactory.factoryMethod.service.DrinkProduction;
 
@@ -18,7 +19,7 @@ public class Consumer {
     }
 
     private static void coffee() {
-        CoffeeFactory coffeeFactory = new CoffeeFactory();
+        DrinkFactory coffeeFactory = new CoffeeFactory();
         DrinkProduction usaCoffee = coffeeFactory.createDrink(DrinkEnum.USACOFFEE);
         usaCoffee.createDrink();
         System.out.println("====================");
@@ -27,7 +28,7 @@ public class Consumer {
     }
 
     private static void tea() {
-        TeaFactory teaFactory = new TeaFactory();
+        DrinkFactory teaFactory = new TeaFactory();
         DrinkProduction greenTea = teaFactory.createDrink(DrinkEnum.GREEN);
         greenTea.createDrink();
         System.out.println("====================");

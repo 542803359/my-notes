@@ -32,6 +32,7 @@
         <module>utils</module>
         <module>demo-lite-flow</module>
         <module>demo-emqx</module>
+        <module>demo-shardingsphere</module>
     </modules>
 
     <dependencies>
