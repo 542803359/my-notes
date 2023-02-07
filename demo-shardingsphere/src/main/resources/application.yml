@@ -26,9 +26,9 @@ spring:
 
     rules:
 
-      # 分表配置
+      # 分表配置,此处是单库多表
       sharding:
-        # 表名称前缀 shard_user0  shard_user1  shard_user2
+        # 表名称前缀 shard_user0  shard_user1  shard_user2 多个表之间以逗号分隔
         binding-tables:
           - shard_user
         tables:
