@@ -23,6 +23,7 @@ public class MqttController {
     @Resource
     private MqttPushClient mqttPushClient;
 
+
     @RequestMapping("/sendMqtt")
     public String sendMqtt() {
         String topicOne = "test-test1";
