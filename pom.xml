@@ -33,6 +33,7 @@
         <module>demo-lite-flow</module>
         <module>demo-emqx</module>
         <module>demo-shardingsphere</module>
+        <module>demo-ipRegion</module>
     </modules>
 
     <dependencies>

@@ -1,4 +1,4 @@
-package com.xiaowenxing.demo.utils;
+package com.xiaowenxing.ipregion.utils;
 
 import com.jthinking.common.util.ip.IPInfo;
 import com.jthinking.common.util.ip.IPInfoUtils;
@@ -10,6 +10,11 @@ import com.jthinking.common.util.ip.IPInfoUtils;
  * @date 2023/02/03 17:43:05
  */
 public class IPInfoUtil {
+
+    /**
+     * https://gitee.com/jthinking/ip-info?_from=gitee_search
+     * IP地理位置获取。支持获取IPv4、IPv6地址信息。包括：国家中文名称、中国省份中文名称、详细地址、互联网服务提供商、是否是国外、纬度、经度。
+     */
 
     public static void main(String[] args) {
         IPInfo ipInfo = IPInfoUtils.getIpInfo("178.249.213.97");
@@ -27,9 +32,10 @@ public class IPInfoUtil {
         System.out.println(ipInfo.getLat());
         // 经度
         System.out.println(ipInfo.getLng());
+    }
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(IPInfoUtils.getIpInfo("2.56.9." + i));
-        }
+    public static String getIpInfo(String ip) {
+        IPInfo ipInfo = IPInfoUtils.getIpInfo(ip);
+        return ipInfo.getCountry() + "|" + ipInfo.isOverseas();
     }
 }

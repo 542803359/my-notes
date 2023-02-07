@@ -1,13 +1,11 @@
-package com.xiaowenxing.demo.utils;
+package com.xiaowenxing.ipregion.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.AddressNotFoundException;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.*;
-import com.xiaowenxing.demo.domin.TimeZoneDto;
+import com.xiaowenxing.ipregion.domin.TimeZoneDto;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -16,11 +14,9 @@ import javax.annotation.PostConstruct;
 import java.io.*;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -32,9 +28,17 @@ import java.util.stream.Collectors;
 @Component
 public class GeoLiteCountryUtil {
 
+    /**
+     * GeoLite2 数据库是免费的 IP 地理定位数据库
+     * 通过输入一个IP地址，解析并获取信息，比如国家、国家代码、省份、省份代码、城市、邮政编码、经纬度等等信息
+     */
+
 
     private static DatabaseReader reader;
 
+    /**
+     * 缓存geo二进制文件
+     */
     static {
         Resource resource = new ClassPathResource("GeoLite2-Country.mmdb");
         File file = null;
@@ -49,6 +53,9 @@ public class GeoLiteCountryUtil {
 
     private static Map<String, TimeZoneDto> TIME_ZONE_MAP = new HashMap<>();
 
+    /**
+     * 项目启动,加载json数据处理后缓存到本地
+     */
     @PostConstruct
     public void init() {
         String jsonStr = "";
@@ -71,7 +78,12 @@ public class GeoLiteCountryUtil {
 
     }
 
-    public static void getCountryInfo(String ip) {
+
+    /**
+     * 通过ip获取国家信息以及时区
+     */
+    public static TimeZoneDto getCountryInfo(String ip) {
+        TimeZoneDto timeZoneDto = null;
         try {
             //要解析的ip地址
             InetAddress ipAddress = InetAddress.getByName(ip);
@@ -82,13 +94,13 @@ public class GeoLiteCountryUtil {
             System.out.println(country.getIsoCode());
             System.out.println(country.getName());
             System.out.println(country.getNames().get("zh-CN"));
-            TimeZoneDto timeZoneDto = TIME_ZONE_MAP.get(country.getIsoCode());
-            System.out.println(timeZoneDto);
+            timeZoneDto = TIME_ZONE_MAP.get(country.getIsoCode());
         } catch (AddressNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return timeZoneDto;
     }
 
 }

@@ -1,9 +1,8 @@
-package com.xiaowenxing.demo.utils;
+package com.xiaowenxing.ipregion.utils;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
-import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
