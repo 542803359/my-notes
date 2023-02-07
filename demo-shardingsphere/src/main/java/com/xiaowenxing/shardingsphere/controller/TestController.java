@@ -29,7 +29,6 @@ public class TestController {
     /**
      * ShardUser 进行了分表处理,此处为一个库里面的分表. 分表策略见配置文件
      */
-
     @GetMapping("/getShardUser")
     public List<ShardUser> getShardUser(@RequestParam(required = false) Long id) {
         return shardUserService.getShardUser(id);
