@@ -10,4 +10,5 @@ package com.example.demoadapter.adapter;
 public interface UsbAdapter {
 
     void handleSurfInternet();
+
 }
