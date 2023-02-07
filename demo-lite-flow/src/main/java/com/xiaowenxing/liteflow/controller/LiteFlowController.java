@@ -25,7 +25,6 @@ public class LiteFlowController {
     @ResponseBody
     public String shopTest(@Nullable @RequestBody String reqData) {
         try {
-
             LiteflowResponse shoppingChain = flowExecutor.execute2Resp("shoppingChain", reqData, ShoppingVO.class);
             return shoppingChain.getContextBean(ShoppingVO.class).getName();
         } catch (Throwable t) {
