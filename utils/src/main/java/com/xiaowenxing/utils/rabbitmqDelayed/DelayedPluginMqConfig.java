@@ -20,6 +20,7 @@ import java.util.Map;
 @Configuration
 public class DelayedPluginMqConfig {
 
+
     /**
      * 交换机类型
      */
