@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class LoginForWx implements UserLogin {
 
+
     @Override
     public void login() {
         System.out.println("微信登录");
