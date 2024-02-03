@@ -39,8 +39,8 @@
         <!--spring有限状态机-->
         <dependency>
             <groupId>org.springframework.statemachine</groupId>
-            <artifactId>spring-statemachine-core</artifactId>
-            <version>2.0.1.RELEASE</version>
+            <artifactId>spring-statemachine-starter</artifactId>
+            <version>3.2.0</version>
         </dependency>
     </dependencies>
 

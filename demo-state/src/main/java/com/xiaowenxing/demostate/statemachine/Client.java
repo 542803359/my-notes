@@ -1,21 +1,19 @@
 package com.xiaowenxing.demostate.statemachine;
 
-import com.xiaowenxing.demostate.statemachine.common.Events;
-import com.xiaowenxing.demostate.statemachine.common.States;
-import com.xiaowenxing.demostate.statemachine.config.OrderMachineBuilder;
-import com.xiaowenxing.demostate.statemachine.config.OrderStateMachinePersist;
 import com.xiaowenxing.demostate.statemachine.domin.Order;
+import com.xiaowenxing.demostate.statemachine.domin.R;
+import com.xiaowenxing.demostate.statemachine.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.persist.StateMachinePersister;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * 客户端类
@@ -24,56 +22,41 @@ import javax.annotation.Resource;
  * @date 2021/6/10 16:47
  * @since 3.6
  **/
+@Slf4j
 @RestController
-@RequestMapping("/state")
+@RequestMapping("/orderStatus")
 public class Client {
 
-    @Autowired
-    private OrderMachineBuilder orderMachineBuilder;
+    @Resource
+    private OrderService orderService;
 
-    @Autowired
-    private BeanFactory beanFactory;
-
-    @Autowired
-    private OrderStateMachinePersist orderStateMachinePersist;
-
-    @Resource(name = "orderMemoryPersister")
-    private StateMachinePersister<States, Events, String> stateMachinePersister;
-
-
-    @GetMapping("/testMachineBuild")
-    public void testMachineBuild(String orderId) throws Exception {
-        Order order = new Order();
-        order.setId(orderId);
-        StateMachine<States, Events> build = orderMachineBuilder.build(beanFactory);
-
-        build.start();
-
-        Message<Events> message = MessageBuilder
-                .withPayload(Events.PAY).setHeader("order", order).build();
-        build.sendEvent(message);
-
-        stateMachinePersister.persist(build, orderId);
-
-        //   build.sendEvent(Events.RECEIVE);
-
-        // 获取最终状态
-        System.out.println("当前状态：" + build.getState().getId());
+    @GetMapping("/createOrder")
+    public R<Order> createOrder() {
+        Order order = orderService.create();
+        return R.ok(order);
     }
 
+    @PostMapping("/pay")
+    public R<Order> pay(@RequestParam(value = "orderId") Long orderId) {
+        Order order = orderService.pay(orderId);
+        return R.ok(order);
+    }
 
-    @GetMapping("/testMemoryPersisterRestore")
-    public void testMemoryRestore(String orderId) throws Exception {
-        StateMachine<States, Events> stateMachine = orderMachineBuilder.build(beanFactory);
+    @PostMapping("/deliver")
+    public R<Order> deliver(@RequestParam(value = "orderId") Long orderId) {
+        Order order = orderService.deliver(orderId);
+        return R.ok(order);
+    }
 
-        stateMachinePersister.restore(stateMachine, orderId);
-        System.out.println("恢复状态机后的状态为：" + stateMachine.getState().getId());
+    @PostMapping("/receive")
+    public R<Order> receive(@RequestParam(value = "orderId") Long orderId) {
+        Order order = orderService.receive(orderId);
+        return R.ok(order);
+    }
 
-        stateMachine.sendEvent(Events.RECEIVE);
-
-
-        // 获取最终状态
-        System.out.println("当前状态：" + stateMachine.getState().getId());
-
+    @GetMapping("/getOrders")
+    public R<Map<Long, Order>> getOrders() {
+        Map<Long, Order> orders = orderService.getOrders();
+        return R.ok(orders);
     }
 }
