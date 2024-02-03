@@ -40,14 +40,6 @@ public class GeoLiteCountryUtil {
      * 缓存geo二进制文件
      */
     static {
-       /* //import cn.hutool.core.util.ClassUtil;
-        try (InputStream inputStream = ClassUtil.getClassLoader().getResourceAsStream("GeoLite2-Country.mmdb")) {
-            // 读取数据库内容
-            reader = new DatabaseReader.Builder(inputStream).build();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
         Resource resource = new ClassPathResource("GeoLite2-Country.mmdb");
         File file = null;
         try {
